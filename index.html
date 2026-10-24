@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makeup by You 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff4f91;
+  --soft-pink: #ffe3ed;
+  --pale: #fff6f9;
+  --brown: #613326;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--brown);
+  background: var(--pale);
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+header {
+  background: #fffafd;
+  padding: 17px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #ffe4ee;
+}
+.logo {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--pink);
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+}
+.logo small {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--brown);
+}
+nav { display: flex; gap: 24px; font-weight: 800; font-size: 14px; }
+nav a:hover { color: var(--pink); }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.icon-btn {
+  background: white;
+  border: 1px solid #ffd5e3;
+  padding: 9px 12px;
+  border-radius: 22px;
+  color: var(--pink);
+}
+.pill {
+  background: var(--pink);
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 25px;
+  font-weight: 900;
+  box-shadow: 0 5px 13px #ff4f9130;
+  transition: .2s;
+}
+.pill:hover { transform: translateY(-2px); box-shadow: 0 7px 16px #ff4f9150; }
+.hero {
+  padding: 55px 7% 35px;
+  min-height: 430px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+  background:
+    radial-gradient(circle at 10% 10%, #fff 0 3px, transparent 4px),
+    linear-gradient(130deg, #ffe2ed, #fff1f6 55%, #ffd4e5);
+  overflow: hidden;
+  position: relative;
+}
+.hero::before {
+  content: "♡  ✧  🎀  ♡  ✨";
+  position: absolute;
+  top: 20px; right: 6%;
+  color: #ff8db7; font-size: 25px; letter-spacing: 14px;
+}
+.eyebrow {
+  display: inline-block;
+  background: white;
+  padding: 9px 17px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(42px, 5.5vw, 72px);
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+.hero h1 span { color: var(--pink); }
+.hero p { max-width: 440px; line-height: 1.8; margin-bottom: 23px; }
+.hero-art {
+  text-align: center;
+  position: relative;
+  padding: 25px;
+}
+.hero-circle {
+  width: min(100%, 380px);
+  aspect-ratio: 1;
+  margin: auto;
+  border-radius: 48% 52% 43% 57%;
+  background: linear-gradient(145deg, #ffb6d0, #ffdfeb);
+  border: 8px solid white;
+  box-shadow: 0 15px 40px #e979a84a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(100px, 15vw, 180px);
+  transform: rotate(-5deg);
+}
+.sticker {
+  position: absolute;
+  background: white;
+  border-radius: 18px;
+  padding: 12px 17px;
+  font-weight: 900;
+  box-shadow: 0 6px 20px #b94d7220;
+}
+.sticker.one { top: 18%; left: 0; transform: rotate(-8deg); }
+.sticker.two { bottom: 15%; right: 0; transform: rotate(6deg); }
+.section { padding: 42px 7%; }
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+.section-heading h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+}
+.section-heading p { color: #a17b79; font-size: 13px; margin-top: 4px; }
+.categories {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(75px, 1fr));
+  gap: 12px;
+}
+.category {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 22px;
+  padding: 16px 5px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 12px;
+  transition: .2s;
+}
+.category .emoji {
+  background: #fff0f5;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+.category:hover, .category.active {
+  border-color: #ff8db7;
+  transform: translateY(-4px);
+  color: var(--pink);
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.product {
+  background: white;
+  padding: 12px;
+  border: 1px solid #ffe0eb;
+  border-radius: 20px;
+  box-shadow: 0 5px 18px #c46e8410;
+  transition: .25s;
+}
+.product:hover { transform: translateY(-5px); box-shadow: 0 12px 25px #c46e8420; }
+.product-image {
+  position: relative;
+  height: 195px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fff0f5, #ffe0eb);
+  display: grid;
+  place-items: center;
+  font-size: 90px;
+  overflow: hidden;
+}
+.product-image::after {
+  content: "✧  ♡  ✧";
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: #ff9cbd;
+  font-size: 15px;
+}
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--pink);
+  color: white;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 5px 8px;
+}
+.heart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: white;
+  color: #d7a2b5;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 19px;
+  z-index: 1;
+}
+.heart.liked { color: #ff3984; }
+.product h3 { font-size: 14px; margin: 12px 2px 5px; }
+.product .desc { font-size: 11px; color: #a58a88; margin: 0 2px 8px; }
+.price { font-weight: 900; font-size: 15px; }
+.rating { color: #ffb72e; font-size: 12px; margin: 6px 0 12px; }
+.add {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ffbdd4;
+  border-radius: 12px;
+  background: #fff5f8;
+  color: var(--pink);
+  font-weight: 900;
+}
+.add:hover { background: var(--pink); color: white; }
+.search-wrap { display: flex; gap: 8px; }
+.search-wrap input {
+  width: 190px;
+  padding: 10px 14px;
+  border: 1px solid #ffd3e2;
+  border-radius: 22px;
+  outline: none;
+  background: white;
+}
+.search-wrap input:focus { border-color: var(--pink); }
+.promo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 7% 40px;
+}
+.promo {
+  min-height: 235px;
+  padding: 28px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  overflow: hidden;
+}
+.promo h2 { font-family: 'Fredoka', sans-serif; font-size: 28px; margin-bottom: 12px; }
+.promo p { line-height: 1.7; font-size: 14px; margin-bottom: 17px; }
+.promo .big-emoji { font-size: 85px; }
+.promo.pink { background: #ffdeea; }
+.promo.yellow { background: #fff4cf; }
+.tips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.tip {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  border: 1px solid #ffe0eb;
+}
+.tip span { font-size: 34px; }
+.tip h3 { margin: 10px 0 6px; font-size: 16px; }
+.tip p { font-size: 13px; color: #967c79; line-height: 1.7; }
+.benefits {
+  margin: 0 7% 35px;
+  padding: 22px;
+  background: white;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+.benefit span { font-size: 27px; }
+.benefit h4 { color: var(--pink); font-size: 13px; margin: 6px 0; }
+.benefit p { font-size: 11px; color: #967c79; }
+footer {
+  background: linear-gradient(110deg, #ff91b8, #ff6eaa);
+  padding: 35px 7%;
+  color: white;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+footer h2 { font-family: 'Fredoka', sans-serif; margin-bottom: 8px; }
+footer p { font-size: 13px; line-height: 1.7; }
+.subscribe { display: flex; gap: 6px; }
+.subscribe input {
+  width: 220px;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  outline: none;
+}
+.subscribe button { background: var(--brown); color: white; border: 0; border-radius: 12px; padding: 12px 16px; font-weight: 800; }
+.copyright { text-align: center; border-top: 1px solid #ffffff60; margin-top: 25px; padding-top: 18px; font-size: 12px; }
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 100px);
+  opacity: 0;
+  background: #603426;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 25px;
+  z-index: 20;
+  transition: .3s;
+  box-shadow: 0 5px 20px #0002;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+.empty { grid-column: 1/-1; text-align: center; padding: 35px; }
+@media(max-width: 900px) {
+  nav { gap: 12px; font-size: 12px; }
+  .categories { grid-template-columns: repeat(4, 1fr); }
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-image { height: 170px; }
+  .benefits { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 600px) {
+  header { padding: 14px 5%; flex-wrap: wrap; }
+  nav { order: 3; width: 100%; justify-content: space-between; overflow-x: auto; }
+  .header-actions { margin-left: auto; }
+  .hero { padding: 38px 6%; grid-template-columns: 1fr; text-align: center; }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .hero-art { padding: 15px; }
+  .hero-circle { max-width: 280px; font-size: 130px; }
+  .sticker.one { left: 0; }
+  .sticker.two { right: 0; }
+  .section { padding: 30px 5%; }
+  .section-heading { flex-wrap: wrap; }
+  .categories { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .category { padding: 12px 3px; }
+  .category .emoji { width: 50px; height: 50px; font-size: 25px; }
+  .products { gap: 10px; }
+  .product { padding: 8px; }
+  .product-image { height: 145px; font-size: 65px; }
+  .product h3 { font-size: 12px; }
+  .price { font-size: 13px; }
+  .promo-grid { grid-template-columns: 1fr; padding: 0 5% 30px; }
+  .promo { padding: 22px; min-height: 200px; }
+  .promo h2 { font-size: 24px; }
+  .promo .big-emoji { font-size: 65px; }
+  .tips { grid-template-columns: 1fr; }
+  .benefits { margin: 0 5% 30px; padding: 15px 8px; }
+  .search-wrap { width: 100%; }
+  .search-wrap input { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a class="logo" href="#home">🎀 Makeup<small>by ♡ you</small></a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#new">New Arrival</a>
+    <a href="#tips">Tips & Tutorial</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="focusSearch()" aria-label="Cari">⌕</button>
+    <button class="icon-btn" onclick="showFavorites()">♡ <span id="favCount">0</span></button>
+    <button class="pill" onclick="showCart()">🛍️ <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <span class="eyebrow">💗 Hey Beauty! Welcome to our little shop</span>
+    <h1>Makeup itu<br><span>Mood Booster!</span> ✨</h1>
+    <p>Tampil cantik sesuai versimu sendiri. Temukan produk makeup favorit yang bikin kamu makin percaya diri setiap hari! 🎀</p>
+    <a href="#shop" class="pill">♡ Belanja Sekarang!</a>
+  </div>
+  <div class="hero-art">
+    <div class="hero-circle">💄</div>
+    <div class="sticker one">♡ Hello, Gorgeous!</div>
+    <div class="sticker two">Be You, Be Beautiful ✨</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div><h2>Shop by Category 🌷</h2><p>Pick your favorite, pretty girl!</p></div>
+  </div>
+  <div class="categories" id="categories">
+    <button class="category active" data-category="All"><div class="emoji">🎀</div>Semua</button>
+    <button class="category" data-category="Face"><div class="emoji">🧴</div>Face</button>
+    <button class="category" data-category="Eye"><div class="emoji">👁️</div>Eye</button>
+    <button class="category" data-category="Lip"><div class="emoji">💄</div>Lip</button>
+    <button class="category" data-category="Cheek"><div class="emoji">🌸</div>Cheek</button>
+    <button class="category" data-category="Skincare"><div class="emoji">🫧</div>Skincare</button>
+    <button class="category" data-category="Tools"><div class="emoji">🖌️</div>Tools</button>
+    <button class="category" data-category="Sale"><div class="emoji">💝</div>Sale</button>
+  </div>
+</section>
+
+<section class="section" id="shop" style="padding-top:10px">
+  <div class="section-heading">
+    <div><h2>Our Best Sellers 💕</h2><p>Little things that make you glow!</p></div>
+    <div class="search-wrap">
+      <input id="searchInput" type="search" placeholder="Cari produk... 🔍" aria-label="Cari produk">
+    </div>
+  </div>
+  <div class="products" id="productList"></div>
+</section>
+
+<section class="promo-grid" id="new">
+  <div class="promo pink">
+    <div>
+      <h2>✨ Makeup Tips</h2>
+      <p>Belajar makeup natural, ombre lips, dan glowing look bareng kita!</p>
+      <a class="pill" href="#tips">Lihat Tips ♡</a>
+    </div>
+    <div class="big-emoji">🪞</div>
+  </div>
+  <div class="promo yellow">
+    <div>
+      <h2>Special For You! 🎀</h2>
+      <p>Diskon hingga <strong style="color:#ff4f91;font-size:32px">30%</strong><br>untuk produk pilihan!</p>
+      <button class="pill" onclick="filterSale()">Shop Sale ♡</button>
+    </div>
+    <div class="big-emoji">🛍️</div>
+  </div>
+</section>
+
+<section class="section" id="tips">
+  <div class="section-heading">
+    <div><h2>Little Beauty Secrets 🧚‍♀️</h2><p>Tips simpel buat kamu yang ingin tampil fresh!</p></div>
+  </div>
+  <div class="tips">
+    <article class="tip">
+      <span>🫧</span><h3>01. Skin Prep First</h3>
+      <p>Bersihkan wajah, gunakan pelembap, dan sunscreen di pagi hari sebelum mulai makeup.</p>
+    </article>
+    <article class="tip">
+      <span>💋</span><h3>02. Cute Ombre Lips</h3>
+      <p>Gunakan warna lipstik lebih gelap di bagian dalam bibir, lalu baurkan perlahan.</p>
+    </article>
+    <article class="tip">
+      <span>🌷</span><h3>03. Blush It Up!</h3>
+      <p>Tambahkan blush tipis di pipi untuk memberikan kesan segar dan manis sepanjang hari.</p>
+    </article>
+  </div>
+</section>
+
+<div class="benefits">
+  <div class="benefit"><span>💗</span><h4>Produk Berkualitas</h4><p>Pilihan beauty essentials</p></div>
+  <div class="benefit"><span>🚚</span><h4>Gratis Ongkir</h4><p>Sesuai syarat promo</p></div>
+  <div class="benefit"><span>🎁</span><h4>Packaging Gemas</h4><p>Dikemas penuh cinta</p></div>
+  <div class="benefit"><span>💌</span><h4>Friendly Service</h4><p>Siap membantu kamu</p></div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div>
+      <h2>Stay Pretty, Stay Updated! 💌</h2>
+      <p>Dapatkan info promo, tips, dan produk terbaru<br>langsung ke email kamu ♡</p>
+    </div>
+    <form class="subscribe" id="subscribeForm">
+      <input type="email" placeholder="Masukkan email kamu..." required aria-label="Email">
+      <button type="submit">Subscribe ♡</button>
+    </form>
+    <div><h3>Follow Our Pink World 🎀</h3><p>Instagram · TikTok · Pinterest</p></div>
+  </div>
+  <div class="copyright">© 2026 Makeup by You. Made with ♡ and a little sparkle.</div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const products = [
+  {id:1,name:"Glow Up Cushion",cat:"Face",price:129000,emoji:"🪞",desc:"Natural glow finish",tag:"BEST SELLER"},
+  {id:2,name:"Sweet Talk Lip Tint",cat:"Lip",price:89000,emoji:"💄",desc:"Juicy lips all day",tag:"HOT"},
+  {id:3,name:"Dreamy Eyeshadow",cat:"Eye",price:159000,emoji:"🎨",desc:"Soft pink palette",tag:"NEW"},
+  {id:4,name:"Cheek Blush On",cat:"Cheek",price:79000,emoji:"🌸",desc:"Rosy cheek effect",tag:"FAVORITE"},
+  {id:5,name:"Stay All Day Spray",cat:"Face",price:99000,emoji:"🧴",desc:"Fresh makeup finish",tag:"BEST SELLER"},
+  {id:6,name:"Glass Skin Serum",cat:"Skincare",price:119000,emoji:"🫧",desc:"Your skincare moment",tag:"GLOW"},
+  {id:7,name:"Pretty Lash Mascara",cat:"Eye",price:85000,emoji:"👁️",desc:"Lashes look lovely",tag:"CUTE"},
+  {id:8,name:"Kawaii Brush Set",cat:"Tools",price:109000,emoji:"🖌️",desc:"Soft & fluffy brushes",tag:"SALE"},
+  {id:9,name:"Blossom Lip Gloss",cat:"Lip",price:69000,emoji:"💋",desc:"Shiny glass lips",tag:"SALE"},
+  {id:10,name:"Cloud Soft Powder",cat:"Face",price:95000,emoji:"☁️",desc:"Soft matte finish",tag:"NEW"},
+  {id:11,name:"Dewy Face Mist",cat:"Skincare",price:75000,emoji:"🌷",desc:"A refreshing touch",tag:"SALE"},
+  {id:12,name:"Pink Blush Palette",cat:"Cheek",price:99000,emoji:"🎀",desc:"Your rosy essentials",tag:"FAVORITE"}
+];
+
+let selectedCategory = "All";
+let cart = [];
+let favorites = [];
+let favoriteMode = false;
+
+const rupiah = n => "Rp " + n.toLocaleString("id-ID");
+
+function renderProducts() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = products.filter(p => {
+    const categoryMatch = selectedCategory === "All" ||
+      (selectedCategory === "Sale" ? p.tag === "SALE" : p.cat === selectedCategory);
+    const queryMatch = p.name.toLowerCase().includes(query) ||
+      p.cat.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+    return categoryMatch && queryMatch &&
+      (!favoriteMode || favorites.includes(p.id));
+  });
+
+  document.getElementById("productList").innerHTML = filtered.length
+    ? filtered.map(p => `
+      <article class="product">
+        <div class="product-image">
+          <span class="tag">${p.tag}</span>
+          <button class="heart ${favorites.includes(p.id) ? "liked" : ""}"
+            onclick="toggleFavorite(${p.id})" aria-label="Favorit">
+            ${favorites.includes(p.id) ? "♥" : "♡"}
+          </button>
+          <span>${p.emoji}</span>
+        </div>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="price">${rupiah(p.price)}</div>
+        <div class="rating">★★★★★ <span style="color:#927b77">(4.9)</span></div>
+        <button class="add" onclick="addToCart(${p.id})">♡ Add to Bag</button>
+      </article>`).join("")
+    : `<div class="empty">🥺<h3>Oops, produknya belum ditemukan!</h3><p>Coba kata kunci atau kategori lain ya.</p></div>`;
+}
+
+function notify(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimeout);
+  window.toastTimeout = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function addToCart(id) {
+  cart.push(id);
+  document.getElementById("cartCount").textContent = cart.length;
+  notify("Yay! Produk masuk ke keranjang kamu 💗");
+}
+
+function toggleFavorite(id) {
+  favorites = favorites.includes(id)
+    ? favorites.filter(x => x !== id)
+    : [...favorites, id];
+  document.getElementById("favCount").textContent = favorites.length;
+  renderProducts();
+}
+
+function showCart() {
+  if (!cart.length) return notify("Keranjangmu masih kosong nih 🛍️");
+  const grouped = {};
+  cart.forEach(id => grouped[id] = (grouped[id] || 0) + 1);
+  const summary = Object.entries(grouped).map(([id, qty]) => {
+    const p = products.find(p => p.id === Number(id));
+    return `${p.name} × ${qty}`;
+  }).join(", ");
+  const total = cart.reduce((sum, id) =>
+    sum + products.find(p => p.id === id).price, 0);
+  alert("🛍️ KERANJANG KAMU\n\n" + summary +
+    "\n\nTotal: " + rupiah(total) +
+    "\n\nIni demo website. Checkout belum terhubung ke pembayaran.");
+}
+
+function showFavorites() {
+  favoriteMode = !favoriteMode;
+  selectedCategory = "All";
+  document.querySelectorAll(".category").forEach(b =>
+    b.classList.toggle("active", b.dataset.category === "All"));
+  renderProducts();
+  document.getElementById("shop").scrollIntoView({behavior:"smooth"});
+  notify(favoriteMode ? "Menampilkan produk favorit ♡" : "Menampilkan semua produk 🎀");
+}
+
+function focusSearch() {
+  document.getElementById("searchInput").focus();
+  document.getElementById("shop").scrollIntoView({behavior:"smooth"});
+}
+
+function filterSale() {
+  favoriteMode = false;
+  selectedCategory = "Sale";
+  document.querySelectorAll(".category").forEach(b =>
+    b.classList.toggle("active", b.dataset.category === "Sale"));
+  renderProducts();
+  document.getElementById("shop").scrollIntoView({behavior:"smooth"});
+}
+
+document.querySelectorAll(".category").forEach(button => {
+  button.addEventListener("click", () => {
+    favoriteMode = false;
+    selectedCategory = button.dataset.category;
+    document.querySelectorAll(".category").forEach(b =>
+      b.classList.toggle("active", b === button));
+    renderProducts();
+  });
+});
+
+document.getElementById("searchInput").addEventListener("input", () => {
+  favoriteMode = false;
+  renderProducts();
+});
+
+document.getElementById("subscribeForm").addEventListener("submit", e => {
+  e.preventDefault();
+  notify("Terima kasih sudah subscribe, beauty! 💌");
+  e.target.reset();
+});
+
+renderProducts();
+</script>
+</body>
+</html>
